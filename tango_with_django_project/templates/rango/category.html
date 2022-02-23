@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<br>
 
     <head>
         <title>Rango</title>
@@ -14,20 +14,20 @@
                <ul>
                    {% for page in pages %}
                    <li>
-                       <a href="{{ page.url }}">{{page.title}}</a>
-
+                       <a href="{{ page.url }}">{{ page.title }}</a>
                    </li>
                    {% endfor %}
 
                </ul>
+
                {% else %}
-               <strong>No pages currently in category.</strong>
+                   <strong>No pages currently in category.</strong></div></body><br/>
                {% endif %}
            {% else %}
-               <strong>The specified category does not exist.</strong>
+               The specified category does not exist
            {% endif %}
-
+              <a href="/rango/">Index</a><br />
+              <a href="/rango/category/{{category.slug }}/add_page/">Add Page</a> <br/>
        </div>
-       <a href="/rango/">Index</a><br />
     </body>
 </html>
