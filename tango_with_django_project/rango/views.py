@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -9,7 +10,7 @@ from rango.models import Page
 
 
 def index(request):
-    # context_dict = {'boldmessage': 'Crunchy, creamy, cookie, candy, cupcake!'}
+
     category_list = Category.objects.order_by('-likes')[:5]
     page_list = Page.objects.order_by('-views')[:5]
 
@@ -58,8 +59,8 @@ def add_page(request, category_name_slug):
                 page.views = 0
                 page.save()
                 return redirect(reverse('rango:show_category',
-                                            kwargs={'category_name_slug':
-                                            category_name_slug}))
+                                        kwargs={'category_name_slug':
+                                                    category_name_slug}))
         else:
             print(form.errors)
     context_dict = {'form': form, 'category': category}
@@ -67,9 +68,11 @@ def add_page(request, category_name_slug):
 
 
 def about(request):
-    context_dict = {'boldmessage': 'This tutorial has been put together by Yiting'}
-    return render(request, 'rango/about.html', context=context_dict)
-    # return HttpResponse("Rango says here is the about page.<a href='/rango/index/'>Index</a> ")
+
+    print(request.method)
+
+    print(request.user)
+    return render(request, 'rango/about.html', {})
 
 
 def show_category(request, category_name_slug):
